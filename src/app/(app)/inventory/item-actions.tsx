@@ -6,6 +6,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Lightbulb, Loader2, MoreHorizontal } from "lucide-react";
 import { suggestActionForItemExpiration, type SuggestActionForItemExpirationOutput } from "@/ai/flows/suggest-action-for-item-expiration";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useRouter } from "next/navigation";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 interface ItemActionsProps {
   item: {
@@ -20,6 +22,7 @@ export function ItemActions({ item }: ItemActionsProps) {
   const [suggestion, setSuggestion] = useState<SuggestActionForItemExpirationOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [popoverOpen, setPopoverOpen] = useState(false);
+  const router = useRouter();
 
   const handleSuggestAction = async () => {
     setIsLoading(true);
@@ -42,6 +45,15 @@ export function ItemActions({ item }: ItemActionsProps) {
       setIsLoading(false);
     }
   };
+
+  const handleEdit = () => {
+    router.push(`/inventory/${item.id}/edit`);
+  }
+
+  const handleDelete = () => {
+    console.log(`Deleting item ${item.id}`);
+    // Here you would typically call an API to delete the item
+  }
 
   return (
     <div className="flex items-center justify-end gap-2">
@@ -89,9 +101,30 @@ export function ItemActions({ item }: ItemActionsProps) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem>Edit</DropdownMenuItem>
-          <DropdownMenuItem>View History</DropdownMenuItem>
-          <DropdownMenuItem className="text-destructive focus:text-destructive">Delete</DropdownMenuItem>
+          <DropdownMenuItem onSelect={() => router.push(`/inventory/${item.id}`)}>View Details</DropdownMenuItem>
+          <DropdownMenuItem onSelect={handleEdit}>Edit</DropdownMenuItem>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-destructive focus:text-destructive">
+                Delete
+              </DropdownMenuItem>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete the
+                  item and remove its data from our servers.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleDelete} className="bg-destructive hover:bg-destructive/90">
+                  Delete
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

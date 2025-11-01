@@ -19,6 +19,7 @@ import { PlusCircle } from "lucide-react";
 import { inventoryItems } from "@/lib/data";
 import { ItemActions } from "./item-actions";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export default function InventoryPage() {
   return (
@@ -31,9 +32,11 @@ export default function InventoryPage() {
               Manage your food and non-food items.
             </CardDescription>
           </div>
-          <Button>
-            <PlusCircle className="mr-2 h-4 w-4" /> Add Item
-          </Button>
+          <Link href="/inventory/new">
+            <Button>
+              <PlusCircle className="mr-2 h-4 w-4" /> Add Item
+            </Button>
+          </Link>
         </div>
       </CardHeader>
       <CardContent>
@@ -53,7 +56,11 @@ export default function InventoryPage() {
           <TableBody>
             {inventoryItems.map((item) => (
               <TableRow key={item.id}>
-                <TableCell className="font-medium">{item.name}</TableCell>
+                <TableCell className="font-medium">
+                  <Link href={`/inventory/${item.id}`} className="hover:underline">
+                    {item.name}
+                  </Link>
+                </TableCell>
                 <TableCell>{item.category}</TableCell>
                 <TableCell>
                   {item.quantity} {item.unit}
