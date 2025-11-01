@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import {
@@ -60,7 +61,7 @@ export default function DashboardPage() {
 
   return (
       <div className="flex flex-col gap-6">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <GlassCard>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
               <CardTitle className="text-sm font-medium">Total Items</CardTitle>

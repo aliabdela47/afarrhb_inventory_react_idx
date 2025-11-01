@@ -1,3 +1,4 @@
+
 "use client";
 
 import { z } from "zod";
@@ -100,19 +101,6 @@ export function DirectorateForm({ directorate }: DirectorateFormProps) {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="directorname"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Director Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g. Dr. John Smith" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
              <FormField
               control={form.control}
               name="parentunit"
@@ -134,6 +122,19 @@ export function DirectorateForm({ directorate }: DirectorateFormProps) {
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="directorname"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Director Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="e.g. Dr. John Smith" {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -168,7 +169,7 @@ export function DirectorateForm({ directorate }: DirectorateFormProps) {
               control={form.control}
               name="is_active"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 mt-6">
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 md:col-start-1">
                   <div className="space-y-0.5">
                     <FormLabel>Active Status</FormLabel>
                   </div>

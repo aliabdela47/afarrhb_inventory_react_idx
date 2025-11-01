@@ -1,3 +1,4 @@
+
 "use client";
 
 import { z } from "zod";
@@ -137,7 +138,7 @@ export function InventoryForm({ item }: InventoryFormProps) {
               control={form.control}
               name="expirationDate"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="md:col-span-2">
                   <FormLabel>Expiration Date</FormLabel>
                   <FormControl>
                     <Input type="date" {...field} />

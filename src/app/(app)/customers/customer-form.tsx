@@ -1,3 +1,4 @@
+
 "use client";
 
 import { z } from "zod";
@@ -168,7 +169,7 @@ export function CustomerForm({ customer }: CustomerFormProps) {
               control={form.control}
               name="isactive"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 mt-6">
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 md:col-start-1">
                   <div className="space-y-0.5">
                     <FormLabel>Active Status</FormLabel>
                   </div>

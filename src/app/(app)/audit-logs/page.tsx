@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -46,7 +47,7 @@ export default function AuditLogsPage() {
       </CardHeader>
       <CardContent>
         <div className="mb-4 flex flex-col md:flex-row gap-4 items-center">
-          <div className="relative w-full md:w-auto md:flex-grow">
+          <div className="relative w-full md:flex-grow">
             <SlidersHorizontal className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input placeholder="Filter by user or action..." className="pl-10" />
           </div>
@@ -102,7 +103,7 @@ export default function AuditLogsPage() {
           </Button>
         </div>
 
-        <div className="border rounded-md">
+        <div className="border rounded-md overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
@@ -116,11 +117,11 @@ export default function AuditLogsPage() {
             <TableBody>
               {auditLogs.map((log) => (
                 <TableRow key={log.id}>
-                  <TableCell className="text-sm text-muted-foreground">{log.timestamp}</TableCell>
+                  <TableCell className="text-sm text-muted-foreground whitespace-nowrap">{log.timestamp}</TableCell>
                   <TableCell className="font-medium">{log.user}</TableCell>
                   <TableCell>{log.module}</TableCell>
                   <TableCell>{log.action}</TableCell>
-                  <TableCell className="font-code text-sm">{log.details}</TableCell>
+                  <TableCell className="font-code text-sm whitespace-nowrap">{log.details}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
