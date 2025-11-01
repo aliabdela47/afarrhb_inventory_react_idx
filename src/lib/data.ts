@@ -1,12 +1,26 @@
 export const inventoryItems = [
-  { id: 'ITM001', name: 'Whole Wheat Flour', category: 'Dry Goods', quantity: 150, unit: 'kg', expirationDate: '2024-12-31', status: 'In Stock' },
-  { id: 'ITM002', name: 'Vegetable Oil', category: 'Cooking Oils', quantity: 80, unit: 'liters', expirationDate: '2025-05-20', status: 'In Stock' },
-  { id: 'ITM003', name: 'Lentils', category: 'Legumes', quantity: 200, unit: 'kg', expirationDate: '2024-09-15', status: 'Expiring Soon' },
-  { id: 'ITM004', name: 'Canned Tomatoes', category: 'Canned Goods', quantity: 300, unit: 'cans', expirationDate: '2026-01-10', status: 'In Stock' },
-  { id: 'ITM005', name: 'Rice', category: 'Grains', quantity: 500, unit: 'kg', expirationDate: '2025-10-01', status: 'In Stock' },
-  { id: 'ITM006', name: 'Sugar', category: 'Sweeteners', quantity: 90, unit: 'kg', expirationDate: '2025-11-22', status: 'In Stock' },
-  { id: 'ITM007', name: 'Milk Powder', category: 'Dairy', quantity: 45, unit: 'kg', expirationDate: '2024-08-10', status: 'Expiring Soon' },
-  { id: 'ITM008', name: 'Salt', category: 'Seasonings', quantity: 70, unit: 'kg', expirationDate: '2027-07-01', status: 'In Stock' },
+  { id: 'ITM001', itemcode: 'FL-WW-01', name: 'Whole Wheat Flour', description: 'Organic whole wheat flour for baking.', category: 'Dry Goods', warehouse: 'WH-Main', unit: 'kg', quantity: 150, modelnumber: 'MOD-54321', expiration_date: '2024-12-31', status: 'In Stock' },
+  { id: 'ITM002', itemcode: 'OIL-VEG-01', name: 'Vegetable Oil', description: 'Pure vegetable oil for cooking.', category: 'Cooking Oils', warehouse: 'WH-Main', unit: 'liters', quantity: 80, modelnumber: 'MOD-54322', expiration_date: '2025-05-20', status: 'In Stock' },
+  { id: 'ITM003', itemcode: 'LEG-LEN-01', name: 'Lentils', description: 'Red lentils, split.', category: 'Legumes', warehouse: 'WH-North', unit: 'kg', quantity: 200, modelnumber: 'MOD-54323', expiration_date: '2024-09-15', status: 'Expiring Soon' },
+  { id: 'ITM004', itemcode: 'CAN-TOM-01', name: 'Canned Tomatoes', description: 'Diced tomatoes in juice.', category: 'Canned Goods', warehouse: 'WH-Main', unit: 'cans', quantity: 300, modelnumber: 'MOD-54324', expiration_date: '2026-01-10', status: 'In Stock' },
+  { id: 'ITM005', itemcode: 'GRN-RICE-01', name: 'Rice', description: 'Long grain white rice.', category: 'Grains', warehouse: 'WH-South', unit: 'kg', quantity: 500, modelnumber: 'MOD-54325', expiration_date: '2025-10-01', status: 'In Stock' },
+  { id: 'ITM006', itemcode: 'SWT-SUG-01', name: 'Sugar', description: 'Refined white sugar.', category: 'Sweeteners', warehouse: 'WH-Main', unit: 'kg', quantity: 90, modelnumber: 'MOD-54326', expiration_date: '2025-11-22', status: 'In Stock' },
+  { id: 'ITM007', itemcode: 'DRY-MILK-01', name: 'Milk Powder', description: 'Full cream milk powder.', category: 'Dairy', warehouse: 'WH-North', unit: 'kg', quantity: 45, modelnumber: 'MOD-54327', expiration_date: '2024-08-10', status: 'Expiring Soon' },
+  { id: 'ITM008', itemcode: 'SEA-SALT-01', name: 'Salt', description: 'Iodized table salt.', category: 'Seasonings', warehouse: 'WH-South', unit: 'kg', quantity: 70, modelnumber: 'MOD-54328', expiration_date: '2027-07-01', status: 'In Stock' },
+];
+
+export const categories = [
+  { id: 'CAT001', name: 'Dry Goods', parentcategoryid: null, description: 'Shelf-stable dry food items.' },
+  { id: 'CAT002', name: 'Cooking Oils', parentcategoryid: null, description: 'Various types of cooking oils.' },
+  { id: 'CAT003', name: 'Legumes', parentcategoryid: 'CAT001', description: 'Beans, lentils, and peas.' },
+  { id: 'CAT004', name: 'Canned Goods', parentcategoryid: null, description: 'Food items preserved in cans.' },
+  { id: 'CAT005', name: 'Grains', parentcategoryid: 'CAT001', description: 'Rice, wheat, and other grains.' },
+];
+
+export const warehouses = [
+    { id: 'WH-Main', name: 'Main Warehouse', location: 'Addis Ababa', capacity: 10000, manager: 'John Doe' },
+    { id: 'WH-North', name: 'Northern Hub', location: 'Mekelle', capacity: 5000, manager: 'Jane Smith' },
+    { id: 'WH-South', name: 'Southern Hub', location: 'Hawassa', capacity: 7500, manager: 'Peter Jones' },
 ];
 
 export const model19Receipts = [

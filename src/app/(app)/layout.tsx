@@ -34,12 +34,15 @@ import {
   ChevronDown,
   ClipboardList,
   FileText,
+  Home,
   LayoutDashboard,
+  LayoutGrid,
   LogOut,
   Settings,
   Truck,
   UserCircle,
-  UtensilsCrossed,
+  Users,
+  Warehouse,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -49,7 +52,15 @@ import { Badge } from "@/components/ui/badge";
 const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/inventory", label: "Inventory", icon: ClipboardList },
+  { href: "/categories", label: "Categories", icon: LayoutGrid },
+  { href: "/warehouses", label: "Warehouses", icon: Warehouse },
+  { href: "/requests", label: "Requests", icon: FileText },
+  { href: "/issuances", label: "Issuances", icon: FileText },
+  { href: "/employees", label: "Employees", icon: Users },
+  { href: "/customers", label: "Customers", icon: Users },
+  { href: "/directorates", label: "Directorates", icon: Home },
   { href: "/receipts", label: "Model 19 Receipts", icon: FileText },
+  { href: "/vehicles", label: "Vehicles", icon: Truck },
   { href: "/tracking", label: "Vehicle Tracking", icon: Truck },
   { href: "/notifications", label: "Notifications", icon: Bell, badge: "3" },
   { href: "/audit-logs", label: "Audit Logs", icon: Archive },
@@ -58,7 +69,7 @@ const navItems = [
 function AppHeader() {
   const pathname = usePathname();
   const { isMobile } = useSidebar();
-  const currentPage = navItems.find((item) => item.href === pathname);
+  const currentPage = navItems.find((item) => pathname.startsWith(item.href) && item.href !== "/") || navItems.find(item => item.href === "/");
 
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 sm:px-6 backdrop-blur-sm">
@@ -111,24 +122,40 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <Sidebar>
         <SidebarHeader>
           <div className="flex items-center gap-2">
-            <UtensilsCrossed className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold font-headline">AfarRHB Pro</span>
+            <Link href="/" className="flex items-center gap-2">
+                <svg
+                  className="h-8 w-8 text-primary"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+                <span className="text-xl font-bold font-headline">AfarRHB Pro</span>
+            </Link>
           </div>
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href}>
-                  <SidebarMenuButton
-                    isActive={pathname === item.href}
+                 <SidebarMenuButton
+                    asChild
+                    isActive={item.href === "/" ? pathname === item.href : pathname.startsWith(item.href)}
                     tooltip={item.label}
                   >
+                  <Link href={item.href}>
                     <item.icon />
                     <span>{item.label}</span>
                     {item.badge && <Badge className="ml-auto">{item.badge}</Badge>}
-                  </SidebarMenuButton>
-                </Link>
+                  </Link>
+                </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>

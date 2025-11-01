@@ -1,6 +1,4 @@
 import { ImageResponse } from 'next/og'
-import * as fs from 'fs';
-import * as path from 'path';
 
 export const runtime = 'edge'
  
@@ -11,11 +9,6 @@ export const size = {
 export const contentType = 'image/png'
  
 export default function Icon() {
-  const imagePath = path.resolve(process.cwd(), 'src/app/afarrhb-LOGO-768px.png');
-  const imageBuffer = fs.readFileSync(imagePath);
-  const base64Image = Buffer.from(imageBuffer).toString('base64');
-  const dataUrl = `data:image/png;base64,${base64Image}`;
-
   return new ImageResponse(
     (
       <div
@@ -25,9 +18,24 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          backgroundColor: '#90AFC5',
+          borderRadius: '50%',
         }}
       >
-        <img src={dataUrl} alt="AfarRHB Pro" style={{ width: '100%', height: '100%' }} />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#F0F4F7"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ width: '60%', height: '60%' }}
+        >
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="M2 17l10 5 10-5" />
+          <path d="M2 12l10 5 10-5" />
+        </svg>
       </div>
     ),
     {
