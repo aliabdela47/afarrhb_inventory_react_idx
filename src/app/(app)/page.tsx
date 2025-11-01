@@ -15,6 +15,8 @@ import {
   XAxis,
   YAxis,
   Tooltip,
+  Legend,
+  Cell,
 } from "recharts";
 import { inventorySummaryChartData, inventoryItems, vehicles, model19Receipts } from "@/lib/data";
 import { Package, Truck, AlertTriangle, FileText, Bell, CheckCircle } from "lucide-react";
@@ -23,10 +25,17 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const GlassCard = ({ children, className }: { children: React.ReactNode, className?: string }) => (
-  <div className={`rounded-xl border border-border/20 bg-card/60 p-4 shadow-lg backdrop-blur-xl dark:bg-card/40 ${className}`}>
+const GlassCard = ({ children, className, ...props }: React.ComponentProps<typeof Card>) => (
+  <Card
+    className={`
+      border-border/20 bg-card/60 shadow-lg backdrop-blur-xl transition-all
+      hover:-translate-y-1 hover:shadow-2xl dark:bg-card/40
+      ${className}
+    `}
+    {...props}
+  >
     {children}
-  </div>
+  </Card>
 );
 
 export default function DashboardPage() {
@@ -39,19 +48,25 @@ export default function DashboardPage() {
   const chartConfig = {
     total: {
       label: "Total Items",
-      color: "hsl(var(--chart-1))",
     },
+    colors: [
+      "hsl(var(--chart-1))",
+      "hsl(var(--chart-2))",
+      "hsl(var(--chart-3))",
+      "hsl(var(--chart-4))",
+      "hsl(var(--chart-5))",
+    ],
   };
 
   return (
       <div className="flex flex-col gap-6">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <GlassCard>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
               <CardTitle className="text-sm font-medium">Total Items</CardTitle>
               <Package className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
-            <CardContent className="p-0">
+            <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold">{inventoryItems.length}</div>
               <p className="text-xs text-muted-foreground">
                 +2.1% from last month
@@ -59,11 +74,11 @@ export default function DashboardPage() {
             </CardContent>
           </GlassCard>
            <GlassCard>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
               <CardTitle className="text-sm font-medium">Low Stock Alerts</CardTitle>
               <AlertTriangle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
-            <CardContent className="p-0">
+            <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold">{lowStockCount}</div>
                <p className="text-xs text-muted-foreground">
                 Items with low quantity
@@ -71,11 +86,11 @@ export default function DashboardPage() {
             </CardContent>
           </GlassCard>
           <GlassCard>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
               <CardTitle className="text-sm font-medium">Pending Requests</CardTitle>
               <FileText className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
-            <CardContent className="p-0">
+            <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold">{pendingReceiptsCount}</div>
               <p className="text-xs text-muted-foreground">
                 Awaiting confirmation
@@ -83,11 +98,11 @@ export default function DashboardPage() {
             </CardContent>
           </GlassCard>
            <GlassCard>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
               <CardTitle className="text-sm font-medium">Recent Issuances</CardTitle>
               <CheckCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
-            <CardContent className="p-0">
+            <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold">42</div>
                <p className="text-xs text-muted-foreground">
                 In the last 7 days
@@ -95,11 +110,11 @@ export default function DashboardPage() {
             </CardContent>
           </GlassCard>
           <GlassCard>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
               <CardTitle className="text-sm font-medium">Available Vehicles</CardTitle>
               <Truck className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
-            <CardContent className="p-0">
+            <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold">{availableVehicles}</div>
               <p className="text-xs text-muted-foreground">
                 Ready for assignment
@@ -107,11 +122,11 @@ export default function DashboardPage() {
             </CardContent>
           </GlassCard>
           <GlassCard>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
               <CardTitle className="text-sm font-medium">Vehicles on Field</CardTitle>
               <Truck className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
-            <CardContent className="p-0">
+            <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold">{vehiclesOnRouteCount}</div>
               <p className="text-xs text-muted-foreground">
                 Currently active
@@ -119,11 +134,11 @@ export default function DashboardPage() {
             </CardContent>
           </GlassCard>
           <GlassCard>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
               <CardTitle className="text-sm font-medium">Expiring Items</CardTitle>
               <AlertTriangle className="h-4 w-4 text-accent" />
             </CardHeader>
-            <CardContent className="p-0">
+            <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold">{expiringSoonCount}</div>
               <p className="text-xs text-muted-foreground">
                 Within next 30 days
@@ -131,11 +146,11 @@ export default function DashboardPage() {
             </CardContent>
           </GlassCard>
           <GlassCard>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-0 pb-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 pb-2">
               <CardTitle className="text-sm font-medium">Notifications</CardTitle>
               <Bell className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
-            <CardContent className="p-0">
+            <CardContent className="p-4 pt-0">
               <div className="text-2xl font-bold">7</div>
               <p className="text-xs text-muted-foreground">
                 3 unread
@@ -145,7 +160,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="grid grid-cols-1 gap-6">
-           <Card className="bg-card/60 backdrop-blur-xl dark:bg-card/40">
+           <GlassCard>
             <CardHeader>
               <CardTitle>Inventory Summary</CardTitle>
               <CardDescription>
@@ -171,15 +186,22 @@ export default function DashboardPage() {
                       tickFormatter={(value) => `${value}`}
                     />
                      <Tooltip
-                      cursor={{ fill: "hsl(var(--primary) / 0.2)", opacity: 0.5 }}
-                      content={<ChartTooltipContent className="bg-background/80 backdrop-blur-md" />}
+                      cursor={{ fill: "hsl(var(--primary) / 0.1)", radius: "4px" }}
+                      content={<ChartTooltipContent 
+                        className="bg-background/80 backdrop-blur-md border-border/20" 
+                        indicator="dot"
+                        />}
                     />
-                    <Bar dataKey="total" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="total" radius={[4, 4, 0, 0]}>
+                       {inventorySummaryChartData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={chartConfig.colors[index % chartConfig.colors.length]} />
+                      ))}
+                    </Bar>
                   </BarChart>
                 </ResponsiveContainer>
               </ChartContainer>
             </CardContent>
-          </Card>
+          </GlassCard>
         </div>
       </div>
   );
