@@ -58,9 +58,18 @@ export const auditLogs = [
 ];
 
 export const vehicles = [
-  { id: 'AF-001', driver: 'Abebe Bikila', status: 'On Route', lastCheckIn: 'Awash', lastCheckInTime: '2024-07-22 13:00', route: ['Addis Ababa', 'Awash', 'Dire Dawa'], position: { lat: 9.0, lng: 40.16 } },
-  { id: 'AF-002', driver: 'Fatuma Roba', status: 'Idle', lastCheckIn: 'Adama', lastCheckInTime: '2024-07-22 09:45', route: ['Adama', 'Mojo'], position: { lat: 8.55, lng: 39.27 } },
-  { id: 'AF-003', driver: 'Kenenisa Bekele', status: 'On Route', lastCheckIn: 'Debre Birhan', lastCheckInTime: '2024-07-22 14:15', route: ['Addis Ababa', 'Debre Birhan', 'Dessie'], position: { lat: 9.68, lng: 39.53 } },
+  { id: 'VEH001', platenumber: 'AF-001', type: 'Truck', status: 'On Route', assigneddriver: 'Abebe Bikila', insuranceexpiry: '2025-01-01', nextservice_date: '2024-11-01', driver: 'Abebe Bikila', lastCheckIn: 'Awash', lastCheckInTime: '2024-07-22 13:00', route: ['Addis Ababa', 'Awash', 'Dire Dawa'], position: { lat: 9.0, lng: 40.16 } },
+  { id: 'VEH002', platenumber: 'AF-002', type: 'Pickup', status: 'Idle', assigneddriver: 'Fatuma Roba', insuranceexpiry: '2024-12-15', nextservice_date: '2024-10-15', driver: 'Fatuma Roba', lastCheckIn: 'Adama', lastCheckInTime: '2024-07-22 09:45', route: ['Adama', 'Mojo'], position: { lat: 8.55, lng: 39.27 } },
+  { id: 'VEH003', platenumber: 'AF-003', type: 'SUV', status: 'Maintenance', assigneddriver: 'Kenenisa Bekele', insuranceexpiry: '2025-03-20', nextservice_date: '2024-09-01', driver: 'Kenenisa Bekele', lastCheckIn: 'Debre Birhan', lastCheckInTime: '2024-07-22 14:15', route: ['Addis Ababa', 'Debre Birhan', 'Dessie'], position: { lat: 9.68, lng: 39.53 } },
+];
+
+export const requests = [
+    { id: 'REQ001', receiptno: 'REQ-2024-001', requestortype: 'Employee', requestorid: 'EMP001', directorateservice: 'Health', itemsrequested: [], status: 'Pending', signedby: '', attachments: [] },
+    { id: 'REQ002', receiptno: 'REQ-2024-002', requestortype: 'Directorate', requestorid: 'DIR003', directorateservice: 'Maternal and Child Health', itemsrequested: [], status: 'Approved', signedby: 'Dr. John Doe', attachments: [] },
+];
+
+export const issuances = [
+    { id: 'ISS001', issuanceno: 'ISS-2024-001', requestid: 'REQ002', issueditems: [], issuedto: 'DIR003', issuedby: 'admin@afarrhb.org', issuedate: '2024-07-23', remarks: 'Partial fulfillment', status: 'In Progress' },
 ];
 
 export const inventorySummaryChartData = [

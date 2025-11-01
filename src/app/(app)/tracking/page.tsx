@@ -15,11 +15,13 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { MapComponent } from "./map";
-import { vehicles } from "@/lib/data";
+import { vehicles as vehicleData } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 export default function TrackingPage() {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+  const vehicles = vehicleData.filter(v => v.position);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
@@ -51,10 +53,10 @@ export default function TrackingPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {vehicles.map((vehicle) => (
+                {vehicleData.map((vehicle) => (
                   <TableRow key={vehicle.id}>
                     <TableCell>
-                      <div className="font-medium">{vehicle.id}</div>
+                      <div className="font-medium">{vehicle.platenumber}</div>
                       <div className="text-sm text-muted-foreground">{vehicle.driver}</div>
                     </TableCell>
                     <TableCell>
@@ -63,6 +65,7 @@ export default function TrackingPage() {
                         className={cn({
                           "text-green-600 border-green-600/40 bg-green-500/10": vehicle.status === "On Route",
                           "text-gray-600 border-gray-600/40 bg-gray-500/10": vehicle.status === "Idle",
+                          "text-red-600 border-red-600/40 bg-red-500/10": vehicle.status === "Maintenance",
                         })}
                       >
                         {vehicle.status}
