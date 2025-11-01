@@ -145,17 +145,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.href}>
-                 <SidebarMenuButton
-                    asChild
+                <Link href={item.href} legacyBehavior={false}>
+                  <SidebarMenuButton
                     isActive={item.href === "/" ? pathname === item.href : pathname.startsWith(item.href)}
                     tooltip={item.label}
                   >
-                  <Link href={item.href}>
                     <item.icon />
                     <span>{item.label}</span>
                     {item.badge && <Badge className="ml-auto">{item.badge}</Badge>}
-                  </Link>
-                </SidebarMenuButton>
+                  </SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>

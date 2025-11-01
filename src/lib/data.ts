@@ -35,6 +35,12 @@ export const customers = [
     { id: 'CUS003', name: 'Local Clinic', contactname: 'Dr. Alemayehu', phone: '987-654-3212', email: 'alemayehu@clinic.com', address: '789 Clinic Rd', type: 'Health Facility', isactive: false },
 ];
 
+export const directorates = [
+    { id: 'DIR001', name: 'Health', code: 'HLTH', parentunit: null, directorname: 'Dr. John Doe', phone: '111-222-3333', address: 'Health Dept Bldg', is_active: true },
+    { id: 'DIR002', name: 'Logistics', code: 'LOG', parentunit: null, directorname: 'Jane Smith', phone: '444-555-6666', address: 'Logistics Center', is_active: true },
+    { id: 'DIR003', name: 'Maternal and Child Health', code: 'MCH', parentunit: 'DIR001', directorname: 'Dr. Emily White', phone: '777-888-9999', address: 'Health Dept Bldg, Wing A', is_active: true },
+];
+
 export const model19Receipts = [
   { id: 'REC-2024-00123', date: '2024-07-15', supplier: 'Global Food Suppliers', status: 'Completed', items: 3 },
   { id: 'REC-2024-00124', date: '2024-07-18', supplier: 'Agro-Producers Inc.', status: 'Pending', items: 5 },
