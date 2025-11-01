@@ -1,1 +1,5 @@
-// Flows will be imported for their side effects in this file.
+import { config } from 'dotenv';
+config();
+
+import '@/ai/flows/expiring-item-notifications.ts';
+import '@/ai/flows/suggest-action-for-item-expiration.ts';
