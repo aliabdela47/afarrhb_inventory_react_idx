@@ -3,6 +3,7 @@
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
+import { useEffect, useState } from 'react';
 
 // Manually define the icon for leaflet markers to avoid issues with SSR
 const truckIcon = L.divIcon({
@@ -21,7 +22,17 @@ interface MapComponentProps {
 }
 
 export function MapComponent({ vehicles }: MapComponentProps) {
+    const [isClient, setIsClient] = useState(false);
+    
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
   const center: L.LatLngExpression = [9.145, 40.4897]; // Ethiopia center
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <MapContainer center={center} zoom={6} className="h-full w-full rounded-lg border">

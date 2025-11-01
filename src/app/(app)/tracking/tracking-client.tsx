@@ -55,12 +55,6 @@ interface TrackingClientProps {
 }
 
 export function TrackingClient({ allVehicles, vehiclesWithPosition }: TrackingClientProps) {
-  const [isClient, setIsClient] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
       <div className="lg:col-span-2 flex flex-col">
@@ -72,13 +66,7 @@ export function TrackingClient({ allVehicles, vehiclesWithPosition }: TrackingCl
             </CardDescription>
           </CardHeader>
           <CardContent className="h-[60vh] lg:h-auto lg:flex-1">
-            {isClient ? <DynamicMap vehicles={vehiclesWithPosition} /> : (
-              <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed bg-muted">
-                <div className="text-center text-muted-foreground">
-                  <p>Loading Map...</p>
-                </div>
-              </div>
-            )}
+            <DynamicMap vehicles={vehiclesWithPosition} />
           </CardContent>
         </Card>
       </div>
