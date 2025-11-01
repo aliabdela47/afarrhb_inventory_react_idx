@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
+import AppLayout from "@/app/(app)/layout";
+
 
 export const metadata: Metadata = {
   title: "Health Bureau Inventory",
@@ -25,7 +27,9 @@ export default function RootLayout({
           "h-full font-body antialiased",
         )}
       >
-        {children}
+        <AppLayout>
+          {children}
+        </AppLayout>
         <Toaster />
       </body>
     </html>
