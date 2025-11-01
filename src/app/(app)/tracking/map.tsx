@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Truck } from "lucide-react";
 import L from 'leaflet';
+import React, { useEffect, useState } from 'react';
 
 // Manually define the icon for leaflet markers
 const truckIcon = L.divIcon({
@@ -24,9 +25,13 @@ interface MapComponentProps {
 
 export function MapComponent({ vehicles }: MapComponentProps) {
   const center: L.LatLngExpression = [9.145, 40.4897]; // Ethiopia center
+  const [isClient, setIsClient] = useState(false);
 
-  // Check if running on the client side
-  if (typeof window === 'undefined') {
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
     return (
         <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed bg-muted">
             <div className="text-center text-muted-foreground">
