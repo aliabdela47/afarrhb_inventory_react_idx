@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 205 25% 95%;
+    --background: 210 25% 96%;
     --foreground: 215 15% 15%;
-    --card: 205 25% 100%;
+    --card: 210 25% 100%;
     --card-foreground: 215 15% 15%;
-    --popover: 205 25% 100%;
+    --popover: 210 25% 100%;
     --popover-foreground: 215 15% 15%;
-    --primary: 33 88% 60%;
+    --primary: 205 29% 67%;
     --primary-foreground: 215 15% 5%;
-    --secondary: 205 25% 90%;
+    --secondary: 210 25% 90%;
     --secondary-foreground: 215 15% 15%;
-    --muted: 205 25% 90%;
+    --muted: 210 25% 90%;
     --muted-foreground: 215 15% 55%;
-    --accent: 205 29% 80%;
+    --accent: 33 88% 60%;
     --accent-foreground: 215 15% 15%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 205 20% 88%;
-    --input: 205 20% 88%;
-    --ring: 33 88% 60%;
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 205 29% 67%;
     --chart-1: 205 29% 67%;
     --chart-2: 33 88% 60%;
     --chart-3: 197 37% 24%;
@@ -31,25 +31,25 @@
     --radius: 0.5rem;
   }
   .dark {
-    --background: 220 15% 5%;
+    --background: 0 0% 7%;
     --foreground: 210 20% 95%;
-    --card: 220 15% 10%;
+    --card: 0 0% 10%;
     --card-foreground: 210 20% 95%;
-    --popover: 220 15% 5%;
+    --popover: 0 0% 7%;
     --popover-foreground: 210 20% 95%;
-    --primary: 33 88% 60%;
+    --primary: 205 29% 67%;
     --primary-foreground: 215 15% 5%;
-    --secondary: 220 15% 15%;
+    --secondary: 0 0% 15%;
     --secondary-foreground: 210 20% 95%;
-    --muted: 220 15% 15%;
+    --muted: 0 0% 15%;
     --muted-foreground: 210 20% 65%;
-    --accent: 205 29% 30%;
+    --accent: 33 88% 60%;
     --accent-foreground: 210 20% 95%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 33 88% 60%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 205 29% 67%;
     --chart-1: 205 29% 67%;
     --chart-2: 33 88% 60%;
     --chart-3: 197 37% 24%;
@@ -64,9 +64,5 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: hsl(var(--background));
-    background-image: radial-gradient(circle at top right, hsl(var(--accent) / 0.1), transparent 50%),
-                      radial-gradient(circle at bottom left, hsl(var(--primary) / 0.1), transparent 50%);
-    background-attachment: fixed;
   }
 }
