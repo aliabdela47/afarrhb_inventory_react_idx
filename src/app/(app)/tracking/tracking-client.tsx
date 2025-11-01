@@ -19,8 +19,10 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
 
-const DynamicMap = dynamic(() => import('./map').then(mod => mod.MapComponent), {
+// Dynamically import the MapComponent with SSR turned off.
+const MapComponent = useMemo(() => dynamic(() => import('./map').then(mod => mod.MapComponent), {
   ssr: false,
   loading: () => (
     <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed bg-muted">
@@ -29,7 +31,8 @@ const DynamicMap = dynamic(() => import('./map').then(mod => mod.MapComponent), 
       </div>
     </div>
   )
-});
+}), []);
+
 
 interface Vehicle {
     id: string;
@@ -66,7 +69,7 @@ export function TrackingClient({ allVehicles, vehiclesWithPosition }: TrackingCl
             </CardDescription>
           </CardHeader>
           <CardContent className="h-[60vh] lg:h-auto lg:flex-1">
-            <DynamicMap vehicles={vehiclesWithPosition} />
+            <MapComponent vehicles={vehiclesWithPosition} />
           </CardContent>
         </Card>
       </div>
