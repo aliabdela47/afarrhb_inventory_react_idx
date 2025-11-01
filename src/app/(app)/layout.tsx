@@ -145,7 +145,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href} legacyBehavior={false}>
+                <Link href={item.href}>
                   <SidebarMenuButton
                     isActive={item.href === "/" ? pathname === item.href : pathname.startsWith(item.href)}
                     tooltip={item.label}
