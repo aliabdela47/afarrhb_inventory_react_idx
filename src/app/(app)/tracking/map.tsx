@@ -1,46 +1,54 @@
 "use client";
 
-import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
+import 'leaflet/dist/leaflet.css';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Truck } from "lucide-react";
+import L from 'leaflet';
+
+// Manually define the icon for leaflet markers
+const truckIcon = L.divIcon({
+  html: `<div class="p-2 bg-primary rounded-full shadow-lg"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary-foreground" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M5 18H3c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2h10l4 5v7c0 1.1-.9 2-2 2h-1"></path><circle cx="7.5" cy="18.5" r="2.5"></circle><circle cx="17.5" cy="18.5" r="2.5"></circle><path d="M15 13H7V7h5.7"></path></svg></div>`,
+  className: 'dummy',
+  iconSize: [36, 36],
+  iconAnchor: [18, 18]
+});
+
 
 interface MapComponentProps {
-  apiKey: string | undefined;
   vehicles: {
     id: string;
+    platenumber: string;
     position: { lat: number; lng: number };
   }[];
 }
 
-export function MapComponent({ apiKey, vehicles }: MapComponentProps) {
-  const center = { lat: 9.145, lng: 40.4897 }; // Ethiopia center
+export function MapComponent({ vehicles }: MapComponentProps) {
+  const center: L.LatLngExpression = [9.145, 40.4897]; // Ethiopia center
 
-  if (!apiKey) {
+  // Check if running on the client side
+  if (typeof window === 'undefined') {
     return (
-      <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed bg-muted">
-        <div className="text-center text-muted-foreground">
-          <p>Google Maps API Key not configured.</p>
-          <p className="text-xs">Please set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY.</p>
-        </div>
+        <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed bg-muted">
+            <div className="text-center text-muted-foreground">
+                <p>Loading Map...</p>
+            </div>
       </div>
     );
   }
 
   return (
-    <APIProvider apiKey={apiKey}>
-      <Map
-        defaultCenter={center}
-        defaultZoom={6}
-        mapId="afar_rhb_map"
-        className="h-full w-full rounded-lg border"
-      >
+    <MapContainer center={center} zoom={6} className="h-full w-full rounded-lg border">
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      />
         {vehicles.map((vehicle) => (
-          <AdvancedMarker key={vehicle.id} position={vehicle.position}>
-             <div className="p-2 bg-primary rounded-full shadow-lg">
-               <Truck className="h-5 w-5 text-primary-foreground" />
-             </div>
-          </AdvancedMarker>
+            <Marker key={vehicle.id} position={[vehicle.position.lat, vehicle.position.lng]} icon={truckIcon}>
+            <Popup>
+                Plate: {vehicle.platenumber}
+            </Popup>
+            </Marker>
         ))}
-      </Map>
-    </APIProvider>
+    </MapContainer>
   );
 }

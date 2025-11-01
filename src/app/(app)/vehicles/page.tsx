@@ -37,9 +37,11 @@ export default function VehiclesPage() {
               Manage your vehicle fleet.
             </CardDescription>
           </div>
-          <Button>
-            <PlusCircle className="mr-2 h-4 w-4" /> Add Vehicle
-          </Button>
+          <Link href="/vehicles/new">
+            <Button>
+              <PlusCircle className="mr-2 h-4 w-4" /> Add Vehicle
+            </Button>
+          </Link>
         </div>
       </CardHeader>
       <CardContent>
@@ -60,14 +62,17 @@ export default function VehiclesPage() {
           <TableBody>
             {vehicleData.map((vehicle) => (
               <TableRow key={vehicle.id}>
-                <TableCell className="font-medium">{vehicle.platenumber}</TableCell>
+                <TableCell className="font-medium">
+                   <Link href={`/vehicles/${vehicle.id}`} className="hover:underline">
+                    {vehicle.platenumber}
+                  </Link>
+                </TableCell>
                 <TableCell>{vehicle.type}</TableCell>
                 <TableCell>
                    <Badge
                         variant="outline"
                         className={cn({
-                          "text-green-600 border-green-600/40 bg-green-500/10": vehicle.status === "On Route" || vehicle.status === "Active",
-                          "text-gray-600 border-gray-600/40 bg-gray-500/10": vehicle.status === "Idle",
+                          "text-green-600 border-green-600/40 bg-green-500/10": vehicle.status === "On Route" || vehicle.status === "Idle",
                           "text-red-600 border-red-600/40 bg-red-500/10": vehicle.status === "Maintenance",
                         })}
                       >
@@ -86,8 +91,12 @@ export default function VehiclesPage() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                      <DropdownMenuItem>View Details</DropdownMenuItem>
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href={`/vehicles/${vehicle.id}`}>View Details</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href={`/vehicles/${vehicle.id}/edit`}>Edit</Link>
+                      </DropdownMenuItem>
                       <DropdownMenuItem className="text-destructive focus:text-destructive">Delete</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

@@ -17,10 +17,15 @@ import { Badge } from "@/components/ui/badge";
 import { MapComponent } from "./map";
 import { vehicles as vehicleData } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import dynamic from 'next/dynamic';
+
+const DynamicMap = dynamic(() => import('./map').then(mod => mod.MapComponent), {
+  ssr: false,
+  loading: () => <p>Loading map...</p>
+});
+
 
 export default function TrackingPage() {
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-
   const vehicles = vehicleData.filter(v => v.position);
 
   return (
@@ -34,7 +39,7 @@ export default function TrackingPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="h-[60vh] lg:h-auto lg:flex-1">
-            <MapComponent apiKey={apiKey} vehicles={vehicles} />
+            <DynamicMap vehicles={vehicles} />
           </CardContent>
         </Card>
       </div>
