@@ -1,12 +1,12 @@
 export const inventoryItems = [
-  { id: 'ITM001', itemcode: 'FL-WW-01', name: 'Whole Wheat Flour', description: 'Organic whole wheat flour for baking.', category: 'Dry Goods', warehouse: 'WH-Main', unit: 'kg', quantity: 150, modelnumber: 'MOD-54321', expiration_date: '2024-12-31', status: 'In Stock' },
-  { id: 'ITM002', itemcode: 'OIL-VEG-01', name: 'Vegetable Oil', description: 'Pure vegetable oil for cooking.', category: 'Cooking Oils', warehouse: 'WH-Main', unit: 'liters', quantity: 80, modelnumber: 'MOD-54322', expiration_date: '2025-05-20', status: 'In Stock' },
-  { id: 'ITM003', itemcode: 'LEG-LEN-01', name: 'Lentils', description: 'Red lentils, split.', category: 'Legumes', warehouse: 'WH-North', unit: 'kg', quantity: 200, modelnumber: 'MOD-54323', expiration_date: '2024-09-15', status: 'Expiring Soon' },
-  { id: 'ITM004', itemcode: 'CAN-TOM-01', name: 'Canned Tomatoes', description: 'Diced tomatoes in juice.', category: 'Canned Goods', warehouse: 'WH-Main', unit: 'cans', quantity: 300, modelnumber: 'MOD-54324', expiration_date: '2026-01-10', status: 'In Stock' },
-  { id: 'ITM005', itemcode: 'GRN-RICE-01', name: 'Rice', description: 'Long grain white rice.', category: 'Grains', warehouse: 'WH-South', unit: 'kg', quantity: 500, modelnumber: 'MOD-54325', expiration_date: '2025-10-01', status: 'In Stock' },
-  { id: 'ITM006', itemcode: 'SWT-SUG-01', name: 'Sugar', description: 'Refined white sugar.', category: 'Sweeteners', warehouse: 'WH-Main', unit: 'kg', quantity: 90, modelnumber: 'MOD-54326', expiration_date: '2025-11-22', status: 'In Stock' },
-  { id: 'ITM007', itemcode: 'DRY-MILK-01', name: 'Milk Powder', description: 'Full cream milk powder.', category: 'Dairy', warehouse: 'WH-North', unit: 'kg', quantity: 45, modelnumber: 'MOD-54327', expiration_date: '2024-08-10', status: 'Expiring Soon' },
-  { id: 'ITM008', itemcode: 'SEA-SALT-01', name: 'Salt', description: 'Iodized table salt.', category: 'Seasonings', warehouse: 'WH-South', unit: 'kg', quantity: 70, modelnumber: 'MOD-54328', expiration_date: '2027-07-01', status: 'In Stock' },
+  { id: 'ITM001', itemcode: 'FL-WW-01', name: 'Whole Wheat Flour', description: 'Organic whole wheat flour for baking.', category: 'Dry Goods', warehouse: 'WH-Main', unit: 'kg', quantity: 150, modelnumber: 'MOD-54321', expirationDate: '2024-12-31', status: 'In Stock' },
+  { id: 'ITM002', itemcode: 'OIL-VEG-01', name: 'Vegetable Oil', description: 'Pure vegetable oil for cooking.', category: 'Cooking Oils', warehouse: 'WH-Main', unit: 'liters', quantity: 80, modelnumber: 'MOD-54322', expirationDate: '2025-05-20', status: 'In Stock' },
+  { id: 'ITM003', itemcode: 'LEG-LEN-01', name: 'Lentils', description: 'Red lentils, split.', category: 'Legumes', warehouse: 'WH-North', unit: 'kg', quantity: 200, modelnumber: 'MOD-54323', expirationDate: '2024-09-15', status: 'Expiring Soon' },
+  { id: 'ITM004', itemcode: 'CAN-TOM-01', name: 'Canned Tomatoes', description: 'Diced tomatoes in juice.', category: 'Canned Goods', warehouse: 'WH-Main', unit: 'cans', quantity: 300, modelnumber: 'MOD-54324', expirationDate: '2026-01-10', status: 'In Stock' },
+  { id: 'ITM005', itemcode: 'GRN-RICE-01', name: 'Rice', description: 'Long grain white rice.', category: 'Grains', warehouse: 'WH-South', unit: 'kg', quantity: 500, modelnumber: 'MOD-54325', expirationDate: '2025-10-01', status: 'In Stock' },
+  { id: 'ITM006', itemcode: 'SWT-SUG-01', name: 'Sugar', description: 'Refined white sugar.', category: 'Sweeteners', warehouse: 'WH-Main', unit: 'kg', quantity: 90, modelnumber: 'MOD-54326', expirationDate: '2025-11-22', status: 'In Stock' },
+  { id: 'ITM007', itemcode: 'DRY-MILK-01', name: 'Milk Powder', description: 'Full cream milk powder.', category: 'Dairy', warehouse: 'WH-North', unit: 'kg', quantity: 45, modelnumber: 'MOD-54327', expirationDate: '2024-08-10', status: 'Expiring Soon' },
+  { id: 'ITM008', itemcode: 'SEA-SALT-01', name: 'Salt', description: 'Iodized table salt.', category: 'Seasonings', warehouse: 'WH-South', unit: 'kg', quantity: 70, modelnumber: 'MOD-54328', expirationDate: '2027-07-01', status: 'In Stock' },
 ];
 
 export const categories = [
@@ -21,6 +21,18 @@ export const warehouses = [
     { id: 'WH-Main', name: 'Main Warehouse', location: 'Addis Ababa', capacity: 10000, manager: 'John Doe' },
     { id: 'WH-North', name: 'Northern Hub', location: 'Mekelle', capacity: 5000, manager: 'Jane Smith' },
     { id: 'WH-South', name: 'Southern Hub', location: 'Hawassa', capacity: 7500, manager: 'Peter Jones' },
+];
+
+export const employees = [
+    { id: 'EMP001', fullname: 'Abebe Bikila', employeeid: 'EID-001', directorateid: 'DIR-Health', position: 'Manager', phone: '123-456-7890', email: 'abebe@example.com', isactive: true },
+    { id: 'EMP002', fullname: 'Fatuma Roba', employeeid: 'EID-002', directorateid: 'DIR-Logistics', position: 'Driver', phone: '123-456-7891', email: 'fatuma@example.com', isactive: true },
+    { id: 'EMP003', fullname: 'Kenenisa Bekele', employeeid: 'EID-003', directorateid: 'DIR-Logistics', position: 'Driver', phone: '123-456-7892', email: 'kenenisa@example.com', isactive: false },
+];
+
+export const customers = [
+    { id: 'CUS001', name: 'Red Cross', contactname: 'John Smith', phone: '987-654-3210', email: 'john@redcross.org', address: '123 Red Cross St', type: 'NGO', isactive: true },
+    { id: 'CUS002', name: 'WFP', contactname: 'Maria Garcia', phone: '987-654-3211', email: 'maria@wfp.org', address: '456 WFP Ave', type: 'UN Agency', isactive: true },
+    { id: 'CUS003', name: 'Local Clinic', contactname: 'Dr. Alemayehu', phone: '987-654-3212', email: 'alemayehu@clinic.com', address: '789 Clinic Rd', type: 'Health Facility', isactive: false },
 ];
 
 export const model19Receipts = [
