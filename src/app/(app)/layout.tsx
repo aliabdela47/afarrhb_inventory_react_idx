@@ -75,7 +75,7 @@ function AppHeader() {
     <header className="flex h-14 items-center gap-4 border-b bg-background/95 px-4 sm:px-6 backdrop-blur-sm">
       {isMobile && <SidebarTrigger />}
       <h1 className="text-lg font-semibold md:text-xl">
-        {currentPage?.label || "AfarRHB Inventory Pro"}
+        {currentPage?.label || "Health Bureau Inventory"}
       </h1>
       <div className="ml-auto flex items-center gap-4">
         <DropdownMenu>
@@ -137,7 +137,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   <path d="M2 17l10 5 10-5" />
                   <path d="M2 12l10 5 10-5" />
                 </svg>
-                <span className="text-xl font-bold font-headline">AfarRHB Pro</span>
+                <span className="text-xl font-bold font-headline">HB Inventory</span>
             </Link>
           </div>
         </SidebarHeader>

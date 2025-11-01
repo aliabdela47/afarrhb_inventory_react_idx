@@ -64,7 +64,7 @@ export default function LoginPage() {
                <UtensilsCrossed className="h-10 w-10 text-primary" />
             </div>
             <CardTitle className="font-headline text-3xl font-bold">
-              AfarRHB Inventory Pro
+              Health Bureau Inventory
             </CardTitle>
             <CardDescription>
               Welcome back! Please sign in to your account.
