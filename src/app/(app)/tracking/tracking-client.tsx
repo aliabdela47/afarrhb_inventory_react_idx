@@ -19,10 +19,9 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import dynamic from 'next/dynamic';
-import { useMemo } from 'react';
 
 // Dynamically import the MapComponent with SSR turned off.
-const MapComponent = useMemo(() => dynamic(() => import('./map').then(mod => mod.MapComponent), {
+const MapComponent = dynamic(() => import('./map').then(mod => mod.MapComponent), {
   ssr: false,
   loading: () => (
     <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed bg-muted">
@@ -31,7 +30,7 @@ const MapComponent = useMemo(() => dynamic(() => import('./map').then(mod => mod
       </div>
     </div>
   )
-}), []);
+});
 
 
 interface Vehicle {
